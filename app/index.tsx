@@ -14,18 +14,21 @@ export default function Index() {
         flex: 1,
         backgroundColor: 'red',
         justifyContent: 'center', //centra il contenuto in modo verticale
-        alignItems: 'center' //centra il contenuto in modo orizzontale
-        
+        alignItems: 'center' //centra il contenuto in modo orizzontale        
       }}>
+
         <Text style={{color: 'white', fontSize: 32, fontWeight:'bold'}}>Hello world</Text>
+
         <Image style={{width: 200, height: 200}}
         source={{ uri: 'https://reactnative.dev/docs/assets/p_cat2.png'}}/>
 
         <View style={{
           width: '100%',
-          paddingHorizontal: 10
+          paddingHorizontal: 10          
         }}>
-        <TextInput  style={{ backgroundColor: 'grey', color: 'yellow', height: 30, borderWidth: 1, borderColor: 'aqua', width: '100%'}} defaultValue="SCRIVI QUI" ></TextInput>
+
+          <TextInput  style={{ backgroundColor: 'grey', color: 'yellow', height: 30, borderWidth: 1, borderColor: 'aqua', width: '100%'}} defaultValue="SCRIVI QUI" ></TextInput>
+
         </View>
       </View>
       
