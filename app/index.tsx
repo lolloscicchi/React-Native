@@ -1,69 +1,132 @@
-import { Text, View, Image, TextInput } from "react-native";
+import { Text, View, Image, TextInput, ScrollView } from 'react-native';
+
+const DATA = [
+  {
+    backgroundColor: 'red',
+    title: 'Red Challenger',
+    subtitle: 'Questa è una Dodge Challenger rossa',
+    imageURL: require('../assets/images/redChallenger.jpeg'),
+  },
+  {
+    backgroundColor: 'orange',
+    title: 'Orange Challenger',
+    subtitle: 'Questa è una Dodge Challenger arancione',
+    imageURL: require('../assets/images/orangeChallenger.jpeg'),
+  },
+  {
+    backgroundColor: 'green',
+    title: 'Green Challenger',
+    subtitle: 'Questa è una Dodge Challenger verde',
+    imageURL: require('../assets/images/greenChallenger.jpeg'),
+  },
+  {
+    backgroundColor: 'purple',
+    title: 'Purple Challenger',
+    subtitle: 'Questa è una Dodge Challenger viola',
+    imageURL: require('../assets/images/purpleChallenger.jpeg'),
+  },
+];
+
+const Card = props => {
+  console.log(props.title);
+  return (
+    // INIT CARD
+
+    <View
+      style={{
+        width: '100%',
+        height: 300,
+        flexDirection: 'row',
+        backgroundColor: props.backgroundColor ?? 'yellow',
+        borderRadius: 15,
+        marginVertical: 8,
+      }}>
+      {/*IMAGE*/}
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Image
+          source={props.imageURL}
+          alt={'Image not found'}
+          style={{
+            width: 130,
+            height: 130,
+            borderRadius: 130 / 2,
+            resizeMode: 'cover',
+          }}
+        />
+      </View>
+      {/*IMAGE*/}
+
+      {/*DESCRIPTION*/}
+      <View style={{ flex: 1, paddingVertical: 16 }}>
+        <Text style={{ fontSize: 20, fontWeight: '800' }}>
+          {props.title ?? 'Titolo non trovato'}
+        </Text>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Text>{props.subtitle ?? 'descrizione non trovata'}</Text>
+        </View>
+      </View>
+    </View>
+    // END CARD
+  );
+};
 
 export default function Index() {
   return (
-    <View style={{
-      borderWidth: 1,
-      flex:1,
-      flexDirection: 'row',
-      // paddingHorizontal: 16, padding orizzontale
-      // paddingVertical: 16 padding verticale
-      padding: 16 //padding tutto attorno
-    }}>
-      <View style={{
+    <ScrollView
+      style={{
         flex: 1,
-        backgroundColor: 'red',
-        justifyContent: 'center', //centra il contenuto in modo verticale
-        alignItems: 'center' //centra il contenuto in modo orizzontale        
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        paddingHorizontal: 16,
+        backgroundColor: '#0000ff',
       }}>
+      {/* INIT CARD */}
 
-        <Text style={{color: 'white', fontSize: 32, fontWeight:'bold'}}>Hello world</Text>
+      {DATA.map((card, index) => {
+        return (
+          <Card
+            key={index}
+            backgroundColor={card.backgroundColor}
+            title={card.title}
+            subtitle={card.subtitle}
+            imageURL={card.imageURL}
+          />
+        );
+      })}
 
-        <Image style={{width: 200, height: 200}}
-        source={{ uri: 'https://reactnative.dev/docs/assets/p_cat2.png'}}/>
-
-        <View style={{
-          width: '100%',
-          paddingHorizontal: 10          
-        }}>
-
-          <TextInput  style={{ backgroundColor: 'grey', color: 'yellow', height: 30, borderWidth: 1, borderColor: 'aqua', width: '100%'}} defaultValue="SCRIVI QUI" ></TextInput>
-
-        </View>
-      </View>
-      
-    </View>
+      {/* <Card
+        title={'Red Challenger'}
+        subtitle={
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sequi saepe maiores natus ex nihi reprehenderit, asperiores reiciendis atque quia distinctio! Suscipit doloribus voluptates possimus quaerat harum aliquam. Nostrum, alias!'
+        }
+        backgroundColor={'red'}
+        imageURL={require('../assets/images/redChallenger.jpeg')}
+      />
+      <Card
+        title={'Green Challenger'}
+        subtitle={
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sequi saepe maiores natus ex nihi reprehenderit, asperiores reiciendis atque quia distinctio! Suscipit doloribus voluptates possimus quaerat harum aliquam. Nostrum, alias!'
+        }
+        backgroundColor={'green'}
+        imageURL={require('../assets/images/greenChallenger.jpeg')}
+      />
+      <Card
+        title={'Purple Challenger'}
+        subtitle={
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sequi saepe maiores natus ex nihi reprehenderit, asperiores reiciendis atque quia distinctio! Suscipit doloribus voluptates possimus quaerat harum aliquam. Nostrum, alias!'
+        }
+        backgroundColor={'purple'}
+        imageURL={require('../assets/images/purpleChallenger.jpeg')}
+      />
+      <Card
+        title={'Orange Challenger'}
+        subtitle={
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sequi saepe maiores natus ex nihi reprehenderit, asperiores reiciendis atque quia distinctio! Suscipit doloribus voluptates possimus quaerat harum aliquam. Nostrum, alias!'
+        }
+        backgroundColor={'orange'}
+        imageURL={require('../assets/images/orangeChallenger.jpeg')}
+      /> */}
+      {/* END CARD */}
+    </ScrollView>
   );
 }
-
-
-
-// import React from 'react';
-// import {View, Text, Image, ScrollView, TextInput} from 'react-native';
-
-// const App = () => {
-//   return (
-//     <ScrollView>
-//       <Text>Some text</Text>
-//       <View>
-//         <Text>Some more text</Text>
-//         <Image
-//           source={{
-//             uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
-//           }}
-//           style={{width: 200, height: 200}}
-//         />
-//       </View>
-//       <TextInput
-//         style={{
-//           height: 40,
-//           borderColor: 'gray',
-//           borderWidth: 1,
-//         }}
-//         defaultValue="You can type in me"
-//       />
-//     </ScrollView>
-//   );
-// };
-
-// export default App;
