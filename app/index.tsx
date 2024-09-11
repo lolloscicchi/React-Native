@@ -196,6 +196,7 @@ const Card = props => {
             height: '60%',
             borderRadius: '100%',
             resizeMode: 'cover',
+            borderWidth: 5,
           }}
         />
       </View>
