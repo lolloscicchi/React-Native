@@ -1,26 +1,31 @@
-import { style } from '@/components/molecules/cardComponent/cardComponent.styles';
-import { View, Button, ColorValue, GestureResponderEvent } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, ViewStyle, TextStyle } from 'react-native';
+import { styles } from './button.styles';
 
 interface ButtonProps {
   title: string;
-  disable: boolean;
+  disabled: boolean;
+  style?: ViewStyle;
+  titleStyle?: TextStyle;
+  activeOpacity?: number;
   onPress: () => void;
 }
 
-export const ButtonComponent = (
-  title: string,
-  color: ColorValue | undefined,
-  disabled: boolean | undefined,
-  onPress: ((event: GestureResponderEvent) => void) | undefined
-) => {
+export const ButtonComponent = ({
+  title,
+  disabled,
+  style,
+  titleStyle,
+  activeOpacity = 0.7,
+  onPress,
+}: ButtonProps) => {
   return (
-    <View style={style.button}>
-      <Button
-        title={title}
-        color={color}
-        disabled={disabled}
-        onPress={onPress}
-      />
-    </View>
+    <TouchableOpacity
+      activeOpacity={activeOpacity}
+      style={[styles.container, style]}
+      disabled={disabled}
+      onPress={onPress}>
+      <Text style={titleStyle}>{title}</Text>
+    </TouchableOpacity>
   );
 };

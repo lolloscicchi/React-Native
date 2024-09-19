@@ -1,35 +1,35 @@
 import { Double } from 'react-native/Libraries/Types/CodegenTypes';
 
-export interface DATA {
+export interface Card {
   backgroundColor: string;
   title: string;
   subTitle: string;
-  imageURL: any;
+  image: any;
 }
 
-export const DATA = [
+export const cards: Card[] = [
   {
     backgroundColor: 'red',
     title: 'Red Challenger',
     subTitle: 'Questa è una Dodge Challenger rossa',
-    imageURL: require('../assets/images/redChallenger.jpeg'),
+    image: require('../assets/images/redChallenger.jpeg'),
   },
   {
     backgroundColor: 'orange',
     title: 'Orange Challenger',
     subTitle: 'Questa è una Dodge Challenger arancione',
-    imageURL: require('../assets/images/orangeChallenger.jpeg'),
+    image: require('../assets/images/orangeChallenger.jpeg'),
   },
   {
     backgroundColor: 'green',
     title: 'Green Challenger',
     subTitle: 'Questa è una Dodge Challenger verde',
-    imageURL: require('../assets/images/greenChallenger.jpeg'),
+    image: require('../assets/images/greenChallenger.jpeg'),
   },
   {
     backgroundColor: 'purple',
     title: 'Purple Challenger',
     subTitle: 'Questa è una Dodge Challenger viola',
-    imageURL: require('../assets/images/purpleChallenger.jpeg'),
+    image: require('../assets/images/purpleChallenger.jpeg'),
   },
 ];

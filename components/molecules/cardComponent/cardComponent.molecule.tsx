@@ -7,10 +7,15 @@ import {
   Button,
   Alert,
 } from 'react-native';
-import { DATA } from '@/api/data.mock';
+import { Card } from '@/api/data.mock';
 import { style } from './cardComponent.styles';
 
-export const Card = ({ title, subTitle, backgroundColor, imageURL }: DATA) => {
+export const CardComponent = ({
+  title,
+  subTitle,
+  backgroundColor,
+  image,
+}: Card) => {
   console.log(title);
   return (
     // INIT CARD
@@ -19,11 +24,11 @@ export const Card = ({ title, subTitle, backgroundColor, imageURL }: DATA) => {
     <View
       style={[
         style.container,
-        { backgroundColor: backgroundColor || 'yellow' }, //si può scrivere meglio questa selezione
+        { backgroundColor: backgroundColor || 'yellow' }, //al posto della versione del prof col punto interrogativo ho inseritoquesta così anche se la stringa è vuota mostra il colore alternativo
       ]}>
       {/*IMAGE*/}
       <View style={style.containerImage}>
-        <Image source={imageURL} alt={'Image not found'} style={style.image} />
+        <Image source={image} alt={'Image not found'} style={style.image} />
       </View>
       {/*IMAGE*/}
 
