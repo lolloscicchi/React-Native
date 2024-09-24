@@ -41,9 +41,7 @@ const ListHeaderComponent = () => {
 };
 const ListFooterComponent = () => {
   return (
-    <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
-      Fine della lista
-    </Text>
+    <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>Fine della lista</Text>
   );
 };
 
