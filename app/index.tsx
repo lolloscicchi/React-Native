@@ -103,9 +103,9 @@ export default function Index() {
         onPress={reset}
         style={{
           marginBottom: 10,
-          backgroundColor: `${counter < 10 && isResetClicked ? 'red' : 'grey'}`,
+          backgroundColor: `${counter < 10 || isResetClicked ? 'grey' : 'red'}`,
         }}
-        disabled={counter < 10 && isResetClicked ? true : false}
+        disabled={counter < 10 || isResetClicked}
       />
       <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
         {/* {`Il pulsante di reset è stato cliccato: ${isResetClicked ? 'SI' : 'NO'}`} */}
