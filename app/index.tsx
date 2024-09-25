@@ -23,7 +23,7 @@ import { useState } from 'react';
 
 export default function Index() {
   const [counter, setCounter] = useState(0);
-  const [isResetClicked, setisResetClicked] = useState(false);
+  const [isResetClicked, setIsResetClicked] = useState(false);
 
   // ** CALLBACKS ** //
   const increment = () => {
@@ -33,7 +33,7 @@ export default function Index() {
 
   const reset = () => {
     setCounter(0);
-    setisResetClicked(true);
+    setIsResetClicked(true);
     console.warn('Resettato');
   };
 
