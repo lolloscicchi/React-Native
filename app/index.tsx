@@ -20,24 +20,20 @@ import { CardComponent } from '@/components/molecules/cardComponent/cardComponen
 
 import { ButtonComponent } from '@/components/atoms/button/button.atom';
 import { useState } from 'react';
-import { TextInputComponent } from '@/components/atoms/textInput/textInput.atom';
+
+const moltiplier = 5;
 
 export default function Index() {
-  const [textInput, setTextInput] = useState('');
-  const [textOutput, setTextOutput] = useState('');
+  const [counter, setCounter] = useState(0);
 
-  // ** CALLBACKS ** //
-  const print = () => {
-    setTextOutput(textInput);
+  const addOne = () => {
+    setCounter((prevCounter) => prevCounter + 1);
   };
 
-  const onChangeText = (text: string) => {
-    setTextInput(text);
-  };
-
-  const reset = () => {
-    setTextInput('');
-    setTextOutput('');
+  const moltiplicator = (n: number) => {
+    for (let i = 0; i < n; i++) {
+      addOne();
+    }
   };
 
   // ** UI ** //
@@ -56,41 +52,22 @@ export default function Index() {
           title={'Premi qui'}
           disabled={false}
           onPress={function (): void {}} //funzione vuota
-          titleStyle={{
-            fontSize: 22,
-            fontWeight: 'bold',
-          }}
+          titleStyle={{ fontSize: 22, fontWeight: 'bold' }}
         />
       </View>
     );
   };
-  const ItemSeparatorComponent = () => (
-    <View
-      style={{
-        height: 16,
-      }}
-    />
-  );
+  const ItemSeparatorComponent = () => <View style={{ height: 16 }} />;
   const ListHeaderComponent = () => {
     return (
-      <Text
-        style={{
-          fontSize: 24,
-          paddingVertical: 16,
-          textAlign: 'center',
-        }}>
+      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
         Le card di oggi:{' '}
       </Text>
     );
   };
   const ListFooterComponent = () => {
     return (
-      <Text
-        style={{
-          fontSize: 24,
-          paddingVertical: 16,
-          textAlign: 'center',
-        }}>
+      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
         Fine della lista
       </Text>
     );
@@ -98,12 +75,7 @@ export default function Index() {
 
   const ListEmptyComponent = () => {
     return (
-      <Text
-        style={{
-          fontSize: 24,
-          paddingVertical: 16,
-          textAlign: 'center',
-        }}>
+      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
         Nessuna card da mostrare
       </Text>
     );
@@ -120,36 +92,29 @@ export default function Index() {
     //   ListFooterComponent={ListFooterComponent}
     //   ListEmptyComponent={ListEmptyComponent}
     // />
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-      }}>
-      <TextInputComponent
-        value={textInput}
-        onChangeText={onChangeText}></TextInputComponent>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
+      <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
+        {`Count: ${counter}`}
+      </Text>
       <ButtonComponent
-        title="Print"
-        onPress={print}
+        title="+ 1"
+        onPress={addOne}
+        style={{ marginBottom: 10, backgroundColor: 'lime' }}
+      />
+      <ButtonComponent
+        title={`+ ${moltiplier}`}
+        onPress={() => moltiplicator(moltiplier)}
         style={{
           marginBottom: 10,
+          backgroundColor: 'lime',
         }}
       />
       <Text
         style={{
           fontSize: 18,
-          paddingVertical: 10,
+          paddingVertical: 32,
           textAlign: 'center',
-          marginHorizontal: '10%',
-        }}>{`${textOutput}`}</Text>
-      <ButtonComponent
-        title="Reset"
-        onPress={reset}
-        style={{
-          marginBottom: 10,
-          backgroundColor: 'red',
-        }}
-      />
+        }}></Text>
     </View>
   );
 }
