@@ -32,8 +32,10 @@ export default function Index() {
   };
 
   const reset = () => {
-    setCounter(0);
-    setIsResetClicked(true);
+    if (counter>9 && !isResetClicked) {
+      setCounter(0);
+      setIsResetClicked(true);
+    }
     console.warn('Resettato');
   };
 
@@ -105,7 +107,7 @@ export default function Index() {
           marginBottom: 10,
           backgroundColor: `${counter < 10 || isResetClicked ? 'grey' : 'red'}`,
         }}
-        disabled={counter < 10 || isResetClicked}
+        // disabled={counter < 10 || isResetClicked}
       />
       <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
         {/* {`Il pulsante di reset è stato cliccato: ${isResetClicked ? 'SI' : 'NO'}`} */}
