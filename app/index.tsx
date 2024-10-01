@@ -20,21 +20,24 @@ import { CardComponent } from '@/components/molecules/cardComponent/cardComponen
 
 import { ButtonComponent } from '@/components/atoms/button/button.atom';
 import { useState } from 'react';
+import { TextInputComponent } from '@/components/atoms/textInput/textInput.atom';
 
 export default function Index() {
-  const [counter, setCounter] = useState(0);
-  const [isResetClicked, setIsResetClicked] = useState(false);
+  const [textInput, setTextInput] = useState('');
+  const [textOutput, setTextOutput] = useState('');
 
   // ** CALLBACKS ** //
-  const increment = () => {
-    setCounter(counter + 1);
-    console.warn('Incrementato');
+  const print = () => {
+    setTextOutput(textInput);
+  };
+
+  const onChangeText = (text: string) => {
+    setTextInput(text);
   };
 
   const reset = () => {
-    setCounter(0);
-    setIsResetClicked(true);
-    console.warn('Resettato');
+    setTextInput('');
+    setTextOutput('');
   };
 
   // ** UI ** //
@@ -53,22 +56,41 @@ export default function Index() {
           title={'Premi qui'}
           disabled={false}
           onPress={function (): void {}} //funzione vuota
-          titleStyle={{ fontSize: 22, fontWeight: 'bold' }}
+          titleStyle={{
+            fontSize: 22,
+            fontWeight: 'bold',
+          }}
         />
       </View>
     );
   };
-  const ItemSeparatorComponent = () => <View style={{ height: 16 }} />;
+  const ItemSeparatorComponent = () => (
+    <View
+      style={{
+        height: 16,
+      }}
+    />
+  );
   const ListHeaderComponent = () => {
     return (
-      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
+      <Text
+        style={{
+          fontSize: 24,
+          paddingVertical: 16,
+          textAlign: 'center',
+        }}>
         Le card di oggi:{' '}
       </Text>
     );
   };
   const ListFooterComponent = () => {
     return (
-      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
+      <Text
+        style={{
+          fontSize: 24,
+          paddingVertical: 16,
+          textAlign: 'center',
+        }}>
         Fine della lista
       </Text>
     );
@@ -76,7 +98,12 @@ export default function Index() {
 
   const ListEmptyComponent = () => {
     return (
-      <Text style={{ fontSize: 24, paddingVertical: 16, textAlign: 'center' }}>
+      <Text
+        style={{
+          fontSize: 24,
+          paddingVertical: 16,
+          textAlign: 'center',
+        }}>
         Nessuna card da mostrare
       </Text>
     );
@@ -93,24 +120,36 @@ export default function Index() {
     //   ListFooterComponent={ListFooterComponent}
     //   ListEmptyComponent={ListEmptyComponent}
     // />
-    <View style={{ flex: 1, justifyContent: 'center' }}>
-      <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
-        {`Count: ${counter}`}
-      </Text>
-      <ButtonComponent title="Incrementa" onPress={increment} style={{ marginBottom: 10 }} />
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+      }}>
+      <TextInputComponent
+        value={textInput}
+        onChangeText={onChangeText}></TextInputComponent>
       <ButtonComponent
-        title="Resetta"
+        title="Print"
+        onPress={print}
+        style={{
+          marginBottom: 10,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 18,
+          paddingVertical: 10,
+          textAlign: 'center',
+          marginHorizontal: '10%',
+        }}>{`${textOutput}`}</Text>
+      <ButtonComponent
+        title="Reset"
         onPress={reset}
         style={{
           marginBottom: 10,
-          backgroundColor: `${counter < 10 || isResetClicked ? 'grey' : 'red'}`,
+          backgroundColor: 'red',
         }}
-        disabled={counter < 10 || isResetClicked}
       />
-      <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
-        {/* {`Il pulsante di reset è stato cliccato: ${isResetClicked ? 'SI' : 'NO'}`} */}
-        {`Il pulsante di reset${isResetClicked ? '' : ' non'} è stato cliccato `}
-      </Text>
     </View>
   );
 }
