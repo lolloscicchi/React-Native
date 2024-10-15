@@ -4,61 +4,67 @@
 //   Callback: tutte le funzioni che useremo nel progetto
 //   UI: tutto lo stile della schermata
 
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  ScrollView,
-  FlatList,
-  ListRenderItem,
-  ImageSourcePropType,
-} from 'react-native';
+import { Text, View } from 'react-native';
 
 import { ButtonComponent } from '@/components/atoms/button/button.atom';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-const moltiplier = 5;
+const PRICE = 10;
+const DISCOUNT = 2;
+const SPEDITION_COST = 3;
 
 export default function Index() {
-  const [counter, setCounter] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
-  const addOne = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
+  const priceState = useMemo(() => {
+    return (PRICE - DISCOUNT) * quantity + SPEDITION_COST;
+  }, [quantity]);
 
-  const moltiplicator = (n: number) => {
-    for (let i = 0; i < n; i++) {
-      addOne();
-    }
-  };
+  const increment = useCallback(() => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  }, []);
+
+  const decrement = useCallback(() => {
+    setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  }, []);
 
   // ** UI ** //
 
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
-        {`Count: ${counter}`}
+        Incrementa o decrementa la quantità
       </Text>
-      <ButtonComponent
-        title="+ 1"
-        onPress={addOne}
-        style={{ marginBottom: 10, backgroundColor: 'lime' }}
-      />
-      <ButtonComponent
-        title={`+ ${moltiplier}`}
-        onPress={() => moltiplicator(moltiplier)}
+
+      <View
         style={{
-          marginBottom: 10,
-          backgroundColor: 'lime',
-        }}
-      />
-      <Text
-        style={{
-          fontSize: 18,
-          paddingVertical: 32,
-          textAlign: 'center',
-        }}></Text>
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginHorizontal: 'auto',
+        }}>
+        <ButtonComponent
+          title="+ 1"
+          onPress={() => increment()}
+          style={{ marginBottom: 10, backgroundColor: 'lime', padding: 30 }}
+        />
+        <ButtonComponent
+          title="- 1"
+          onPress={() => decrement()}
+          style={{
+            marginBottom: 10,
+            backgroundColor: 'red',
+            padding: 30,
+          }}
+        />
+      </View>
+
+      <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
+        Quantità: {`${quantity}`}
+      </Text>
+      <Text style={{ fontSize: 18, paddingVertical: 32, textAlign: 'center' }}>
+        Quantità: {`${priceState}`}
+      </Text>
+      {/* backtic `` */}
     </View>
   );
 }
