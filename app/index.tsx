@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function Index() {
-  const [inputText, setInputText] = useState();
+  const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
 
   useEffect(() => {
