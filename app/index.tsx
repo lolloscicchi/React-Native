@@ -3,6 +3,7 @@
 //   DATA: tutte le richieste api
 //   Callback: tutte le funzioni che useremo nel progetto
 //   UI: tutto lo stile della schermata
+//  MAI IMPORTARE DA QUALCOSA CHE NON SIA REACT MA CHE è QUALCOSA DI DIVERSO
 import React from 'react';
 import { Todo, todoListData } from '@/api/data.mock';
 import { TodoView } from '@/components/molecules/todoComponent/todoView.molecule';
