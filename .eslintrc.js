@@ -8,6 +8,6 @@ module.exports = {
   ],
   plugins: ['prettier', '@react-native'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'lf' }],
   },
 };

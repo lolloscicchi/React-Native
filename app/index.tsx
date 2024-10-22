@@ -11,10 +11,6 @@ import { TextInputComponent } from '@/components/atoms/textInput/textInput.atom'
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 
-const PRICE = 10;
-const DISCOUNT = 2;
-const SPEDITION_COST = 3;
-
 export default function Index() {
   const [inputText, setInputText] = useState();
   const [outputText, setOutputText] = useState('');
